@@ -7,13 +7,17 @@
       "esModuleInterop": true,
       "strict": true,
       "forceConsistentCasingInFileNames": true,
-      "module": "esnext",
+      "module": "CommonJS", 
       "moduleResolution": "node",
       "resolveJsonModule": true,
-      "isolatedModules": true,
+      "isolatedModules": false,
       "jsx": "react",
       "noEmit": false,
       "types": ["react", "react-dom"]  
     },
-    "include": ["src"]
+    "include": [
+      "src/**/*.ts",
+      "src/**/*.tsx",
+      "src/**/*.css"  
+    ]
 }

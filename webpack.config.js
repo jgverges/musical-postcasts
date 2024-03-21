@@ -11,12 +11,14 @@ module.exports = (env, argv) => {
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: isProduction ? 'bundle.min.js' : 'bundle.js',
+      publicPath: '/',
     },
     devServer: {
       static: {
         directory: path.join(__dirname, 'public'),
       },
       port: 3000,
+      historyApiFallback: true 
     },
     resolve: {
       extensions: ['.tsx', '.ts', '.js'],
@@ -35,6 +37,11 @@ module.exports = (env, argv) => {
             'css-loader',
           ],
         },
+        {
+          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          type: 'asset/resource',
+        },
+        
       ],
     },
     plugins: [
