@@ -1,0 +1,13 @@
+.single-card {
+  padding: 30px;
+  width: 300px;
+  min-height: 470px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+.shared-podcast-img {
+  width: 200px;
+  border-radius: 8px;
+}

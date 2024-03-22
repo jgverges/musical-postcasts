@@ -1,0 +1,29 @@
+.episodes-list {
+  display: inline-block;
+  vertical-align: top;
+}
+.episodes-counter {
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 20px;
+  background-color: #fff;
+  color: mediumblue;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+.even-row {
+  background-color: none;
+}
+
+.odd-row {
+  background-color: #eee;
+}
+table {
+  width: 750px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+table th {
+  text-align: left;
+}
