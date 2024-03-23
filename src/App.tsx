@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import EpisodeDetails from "./features/EpisodeDetails/components/EpisodeDetail";
 import NotFoundPage from "./features/common/NotFoundPage";
 import { useNavigate } from "react-router-dom";
@@ -9,16 +9,10 @@ import PodcastLayout from "./features/PodcastDetails/components/PodcastLayout";
 import "./styles/main.css";
 
 function App() {
-  const navigate = useNavigate();
   return (
     <>
-      <h1
-        style={{ color: "blue", marginLeft: "3rem" }}
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        Podcaster
+      <h1 style={{ color: "blue", marginLeft: "3rem" }}>
+        <Link to="/">Podcaster</Link>
       </h1>
       <Routes>
         <Route path="/" element={<PodcastList />} />
