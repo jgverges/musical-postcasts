@@ -2,9 +2,9 @@ export function isoDateToDayMonthYear(isoDateString:string){
     
     const date = new Date(isoDateString);
 
-    return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-        
+    return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;   
 }
+
 export function millisecondsToHoursMinutes(milliseconds: number): string {
     const hours = Math.floor(milliseconds / 3600000);
     const minutes = Math.floor((milliseconds % 3600000) / 60000);
@@ -13,4 +13,8 @@ export function millisecondsToHoursMinutes(milliseconds: number): string {
     const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
   
     return `${formattedHours}:${formattedMinutes}`;
+  }
+  
+  export function extractTitleFromTrack (track:string){
+    return track.split('|')[1]
   }

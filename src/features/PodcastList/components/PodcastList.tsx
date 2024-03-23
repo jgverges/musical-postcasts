@@ -1,15 +1,18 @@
 import React from "react";
 import PodcastListIem from "./PodcastListItem";
-import usePodcasts from "../services/usePodcasts";
+import usePodcastsList from "../services/usePodcastsList";
 
 function PostcastList() {
-  const podcasts = usePodcasts();
+  const { podcasts, error } = usePodcastsList();
+
+  if (error) console.log(error);
 
   return (
     <div className="container">
-      {podcasts.map((podcast) => (
-        <PodcastListIem key={podcast.podcastId} podcast={podcast} />
-      ))}
+      {podcasts &&
+        podcasts.map((podcast) => (
+          <PodcastListIem key={podcast.podcastId} podcast={podcast} />
+        ))}
     </div>
   );
 }

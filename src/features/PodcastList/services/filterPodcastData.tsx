@@ -1,7 +1,7 @@
 import { Podcast } from "../models/Podcast";
-import { PodcastListResponse } from "../models/podcastAPI";
+import { PodcastListResponse } from "../models/PodcastListResponse";
 
-function filterPodcastData(data: PodcastListResponse): Podcast[] {
+export function filterPodcastData(data: PodcastListResponse): Podcast[] {
   const podcasts: Podcast[] = [];
 
   if (data?.feed?.entry && Array.isArray(data.feed.entry)) {

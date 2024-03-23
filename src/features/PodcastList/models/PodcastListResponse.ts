@@ -85,7 +85,7 @@ export interface ReleaseDate {
     };
 }
 
-export interface Entry {
+export interface PodcastI {
     "im:name": Name;
     "im:image": Image[];
     summary: Summary;
@@ -102,7 +102,7 @@ export interface Entry {
 
 export interface Feed {
     author: Author;
-    entry: Entry[];
+    entry: PodcastI[];
     updated: {
         label: string;
     };
