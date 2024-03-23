@@ -1,7 +1,7 @@
 import React from "react";
 import { getByRole, render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import App from "./App";
+import App from "../src/App";
 
 test("App renders the  heading h1 with the text 'Podcaster'", () => {
   const { getByText, getByRole } = render(
