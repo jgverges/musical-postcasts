@@ -14,7 +14,7 @@ function usePodcastList(): {
     const fetchPodcasts = async () => {
       try {
         const storedPodcasts = localStorage.getItem("podcasts");
-        const storedTimestamp = localStorage.getItem("podcastsTimestamp");
+        const storedTimestamp = localStorage.getItem("podcasts_Timestamp");
 
         if (storedPodcasts && storedTimestamp) {
           const lastFetchTime = new Date(storedTimestamp).getTime();
@@ -34,7 +34,7 @@ function usePodcastList(): {
           const filteredPodcasts: Podcast[] = filterPodcastData(data);
 
           localStorage.setItem("podcasts", JSON.stringify(filteredPodcasts));
-          localStorage.setItem("podcastsTimestamp", new Date().toISOString());
+          localStorage.setItem("podcasts_Timestamp", new Date().toISOString());
           setPodcasts(filteredPodcasts);
         }
       } catch (error) {

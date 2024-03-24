@@ -1,4 +1,4 @@
-export type PodcastI ={
+export type PodcastDetail ={
     wrapperType: string;
     kind: string;
     artistId?: number;
@@ -65,5 +65,5 @@ export type PodcastI ={
   
   export type PodcastDetailResponse ={
     resultCount: number;
-    results: (PodcastI | Episode)[];
+    results: (PodcastDetail | Episode)[];
   }
