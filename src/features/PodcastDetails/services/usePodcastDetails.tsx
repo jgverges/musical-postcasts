@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { PodcastDetail, Episode } from "../models/PodcastDetailsResponse";
-
-const ALLORIGIN_URL = "https://api.allorigins.win/get?url=";
-const PODCAST_DETAIL_BASE_URL = `https://itunes.apple.com/lookup?imedia=podcast&entity=podcastEpisode&limit=20`;
+import {
+  ALLORIGIN_URL,
+  PODCAST_DETAIL_BASE_URL,
+} from "./podcastDetailsApiUrls";
 
 export function usePodcastDetails(podcastId: string | undefined): {
   results: (PodcastDetail | Episode)[] | null;

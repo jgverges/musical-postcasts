@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { PodcastListResponse } from "../models/PodcastListResponse";
 import { type Podcast } from "../models/Podcast";
 import { filterPodcastData } from "./filterPodcastData";
+import { PODCAST_LIST_URL } from "./podcastListApiUrls";
 
 function usePodcastList(): {
   podcasts: Podcast[] | null;
@@ -26,9 +27,7 @@ function usePodcastList(): {
             return;
           }
         } else {
-          const response = await fetch(
-            "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json"
-          );
+          const response = await fetch(PODCAST_LIST_URL);
           const data: PodcastListResponse = await response.json();
 
           const filteredPodcasts: Podcast[] = filterPodcastData(data);
