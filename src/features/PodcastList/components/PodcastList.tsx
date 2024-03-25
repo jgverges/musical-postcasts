@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PodcastListIem from "./PodcastListItem";
 import usePodcastsList from "../services/usePodcastsList";
 import { Podcast } from "../models/Podcast";
-import "../../../styles/MainView/PodcastList.css";
+import "../../../styles/PodcastList/PodcastList.css";
 
 function PostcastList() {
   const { podcasts, error } = usePodcastsList();

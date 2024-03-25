@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import "../../../styles/EpisodeView/EpisodeDetail.css";
+import "../../../styles/EpisodeDetails/EpisodeDetail.css";
 import { extractTitleFromTrack } from "../../common/utils/FormattingHelpers";
 import AudioPlayer from "../../common/AudioPlayer";
 

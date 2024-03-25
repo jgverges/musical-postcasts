@@ -5,7 +5,7 @@ import {
   isoDateToDayMonthYear,
   millisecondsToHoursMinutes,
 } from "../../common/utils/FormattingHelpers";
-import "../../../styles/DetailView/PodcastDetails.css";
+import "../../../styles/PodcastDetails/PodcastDetails.css";
 import usePodcastDetails from "../services/usePodcastDetails";
 
 function PostcastDetails() {
