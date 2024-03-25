@@ -1,19 +1,18 @@
 import React from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import EpisodeDetails from "./features/EpisodeDetails/components/EpisodeDetail";
 import NotFoundPage from "./features/common/NotFoundPage";
-import { useNavigate } from "react-router-dom";
 import PodcastList from "../src/features/PodcastList/components/PodcastList";
 import PodcastDetails from "../src/features/PodcastDetails/components/PodcastDetails";
 import PodcastLayout from "./features/PodcastDetails/components/PodcastLayout";
 import "./styles/main.css";
+import { LoadingProvider } from "./features/common/LoadingContext";
+import Header from "./features/common/Header";
 
 function App() {
   return (
-    <>
-      <h1 style={{ color: "blue", marginLeft: "3rem" }}>
-        <Link to="/">Podcaster</Link>
-      </h1>
+    <LoadingProvider>
+      <Header />
       <Routes>
         <Route path="/" element={<PodcastList />} />
         <Route path="/podcast" element={<PodcastLayout />}>
@@ -25,7 +24,7 @@ function App() {
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </>
+    </LoadingProvider>
   );
 }
 export default App;
