@@ -27,7 +27,8 @@ export function filterPodcastData(data: PodcastListResponse): Podcast[] {
       }
     });
   }
-  if (podcasts.length === 0) console.log("Error filtering the data");
+  if (!podcasts || podcasts.length === 0)
+    console.log("Error filtering the data");
 
   return podcasts;
 }

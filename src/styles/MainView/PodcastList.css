@@ -1,0 +1,40 @@
+.list-container {
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 30px;
+}
+.podcasts-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 50px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 50px;
+}
+
+.list-header {
+  position: relative;
+}
+.div-right {
+  position: absolute;
+  right: 190px;
+  top: 0;
+  display: flex;
+}
+.list-counter {
+  background-color: blue;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-right: 20px;
+}
+
+.search-input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+  font-size: large;
+}
