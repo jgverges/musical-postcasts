@@ -25,7 +25,6 @@ musical-podcasts/
 │   │   │   ├── components/
 │   │   │   ├── models/
 │   │   │   ├── services/
-│   │   │   └── tests/
 │   │   │
 │   │   ├── PodcastDetails/
 │   │   │   ├── components/
@@ -57,16 +56,16 @@ musical-podcasts/
 └── package.json
 ```
 
-This structure organizes the project by features, where each main function (view) has its own directory in src/features/, which contains its models, services, components, and associated tests. This follows the hexagonal architecture approach, where features are encapsulated and separated from each other, facilitating maintainability and scalability of the project.
-
-## Getting Started
-
-To get a local copy up and running, follow these steps:
+This structure organizes the project by features, where each main function (view) has its own directory in src/features/, which contains its models, services and components. This follows the hexagonal architecture approach, where features are encapsulated and separated from each other, facilitating maintainability and scalability of the project.
 
 ## Requirements
 
 - Node.js (v20.x or higher)
 - npm choose based on the Node.js version
+
+## Getting Started
+
+To get a local copy up and running, follow these steps:
 
 1. **Clone the repository**:
 
@@ -98,9 +97,9 @@ Navigate to [http://localhost:3000/](http://localhost:3000/) in your browser.
 
 ## Features
 
-- **Main View (/)**: Displays the list of the top 100 most popular podcasts.
-- **Podcast Details (/podcast/{podcastId})**: Shows detailed information about a podcast and its episodes.
-- **Episode Details (/podcast/{podcastId}/episode/{episodeId})**: Displays detailed information about an episode, including a basic audio player.
+- **Main View**: Displays the list of the top 100 most popular podcasts.
+- **Podcast Details**: Shows detailed information about a podcast and its episodes.
+- **Episode Details**: Displays detailed information about an episode, including a basic audio player.
 
 ## External APIs
 
