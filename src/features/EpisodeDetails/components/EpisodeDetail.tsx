@@ -1,12 +1,18 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import "../../../styles/EpisodeDetail.css";
+import "../../../styles/EpisodeView/EpisodeDetail.css";
 import { extractTitleFromTrack } from "../../common/utils/FormattingHelpers";
+import AudioPlayer from "../../common/AudioPlayer";
 
 function EpisodeDetails() {
   const location = useLocation();
 
   const receivedData = location.state?.data;
+  if (!receivedData) {
+    console.log("Error getting data from useLocation");
+    return;
+  }
+
   const { episodeUrl, trackName, description } = receivedData;
 
   return (
@@ -15,10 +21,7 @@ function EpisodeDetails() {
         {extractTitleFromTrack(trackName)}
       </h2>
       <p>{description} </p>
-      <audio controls>
-        <source src={episodeUrl} type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
+      <AudioPlayer src={episodeUrl} />
     </div>
   );
 }

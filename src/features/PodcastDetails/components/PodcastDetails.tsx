@@ -5,7 +5,7 @@ import {
   isoDateToDayMonthYear,
   millisecondsToHoursMinutes,
 } from "../../common/utils/FormattingHelpers";
-import "../../../styles/PodcastDetails.css";
+import "../../../styles/DetailView/PodcastDetails.css";
 import usePodcastDetails from "../services/usePodcastDetails";
 
 function PostcastDetails() {
@@ -14,11 +14,10 @@ function PostcastDetails() {
 
   if (error) console.log(error);
 
+  const resultsLength = results && results.length ? results.length - 1 : 0;
   return (
     <div className="episodes-list">
-      <div className="episodes-counter">
-        Episodes: {results && results.length - 1}
-      </div>
+      <div className="episodes-counter">Episodes: {resultsLength}</div>
       <table>
         <thead>
           <tr>

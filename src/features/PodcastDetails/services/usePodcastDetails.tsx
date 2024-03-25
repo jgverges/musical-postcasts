@@ -4,6 +4,7 @@ import {
   ALLORIGIN_URL,
   PODCAST_DETAIL_BASE_URL,
 } from "./podcastDetailsApiUrls";
+import { useLoading } from "../../common/LoadingContext";
 
 export function usePodcastDetails(podcastId: string | undefined): {
   results: (PodcastDetail | Episode)[] | null;
@@ -13,6 +14,7 @@ export function usePodcastDetails(podcastId: string | undefined): {
     null
   );
   const [error, setError] = useState<string | null>(null);
+  const { setLoading } = useLoading();
 
   const PROXY_URL =
     ALLORIGIN_URL +
@@ -26,6 +28,7 @@ export function usePodcastDetails(podcastId: string | undefined): {
 
     const fetchPodcastDetails = async () => {
       try {
+        setLoading(true);
         const storedDetails = localStorage.getItem(podcastDetailsSelected);
         const storedTimestamp = localStorage.getItem(
           podcastDetailsTimestampSelected
@@ -53,15 +56,14 @@ export function usePodcastDetails(podcastId: string | undefined): {
         }
       } catch (error) {
         setError("An error occurred while fetching podcast details");
-        console.error(
-          "An error occurred while fetching podcast details",
-          error
-        );
+        console.log("An error occurred while fetching podcast details", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchPodcastDetails();
-  }, [podcastId]);
+  }, [podcastId, setLoading]);
   if (error) console.log(error);
 
   return { results, error };
