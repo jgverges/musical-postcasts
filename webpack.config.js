@@ -54,7 +54,15 @@ module.exports = (env, argv) => {
     ].filter(Boolean),
     optimization: {
       minimize: isProduction,
-      minimizer: [new TerserPlugin()],
+      minimizer: [
+        new TerserPlugin({
+          terserOptions: {
+            compress: {
+              drop_console: true,
+            },
+          },
+        }),
+      ],
       splitChunks: {
         chunks: "all",
         cacheGroups: {
