@@ -36,6 +36,8 @@ function PostcastList() {
           <div className="list-counter">{filteredPodcastsLength}</div>
           <div>
             <input
+              id="Filter Podcasts"
+              name="Filter Podcasts"
               type="text"
               placeholder="Search Podcasts..."
               value={searchTerm}
