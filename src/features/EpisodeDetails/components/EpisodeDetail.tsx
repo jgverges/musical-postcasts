@@ -16,13 +16,13 @@ function EpisodeDetails() {
   const { episodeUrl, trackName, description } = receivedData;
 
   return (
-    <div className="episode-detail">
+    <article className="episode-detail">
       <h2 className="episode-detail-title">
         {extractTitleFromTrack(trackName)}
       </h2>
       <p>{description} </p>
       <AudioPlayer src={episodeUrl} />
-    </div>
+    </article>
   );
 }
 export default EpisodeDetails;

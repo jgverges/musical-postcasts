@@ -16,7 +16,7 @@ function PostcastDetails() {
 
   const resultsLength = results && results.length ? results.length - 1 : 0;
   return (
-    <div className="episodes-list">
+    <section className="episodes-list">
       <div className="episodes-counter">Episodes: {resultsLength}</div>
       <table>
         <thead>
@@ -70,7 +70,7 @@ function PostcastDetails() {
             })}
         </tbody>
       </table>
-    </div>
+    </section>
   );
 }
 export default PostcastDetails;

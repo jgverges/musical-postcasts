@@ -31,7 +31,7 @@ function PostcastList() {
   const filteredPodcastsLength = filteredPodcasts ? filteredPodcasts.length : 0;
 
   return (
-    <div className="list-container">
+    <section className="list-container">
       <div className="list-header">
         <div className="div-right">
           <div className="list-counter">{filteredPodcastsLength}</div>
@@ -54,7 +54,7 @@ function PostcastList() {
           <PodcastListIem key={podcast.podcastId} podcast={podcast} />
         ))}
       </div>
-    </div>
+    </section>
   );
 }
 

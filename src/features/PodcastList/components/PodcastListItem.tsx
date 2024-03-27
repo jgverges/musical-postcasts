@@ -17,13 +17,13 @@ function PodcastListItem({ podcast }: PodcastListItemProps) {
         state={{ data: podcast }}
         className="no-underline"
       >
-        <div className="card">
+        <article className="card">
           <img src={image60Height?.label} alt={podcast.title} />
           <div className="card-details">
             <h2>{podcast.title.toUpperCase().substring(0)}</h2>
             <p>{podcast.artist}</p>
           </div>
-        </div>
+        </article>
       </Link>
     </>
   );

@@ -12,7 +12,7 @@ import Header from "./features/common/Header";
 function App() {
   return (
     <LoadingProvider>
-      <div className="app">
+      <main className="app">
         <Header />
         <div className="main-content">
           <Routes>
@@ -27,7 +27,7 @@ function App() {
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
-      </div>
+      </main>
     </LoadingProvider>
   );
 }

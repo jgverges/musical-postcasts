@@ -25,7 +25,7 @@ export default function PodcastLayout() {
         state={{ data: podcast }}
         className="no-underline"
       >
-        <div className="single-card">
+        <article className="single-card">
           <img
             src={image170Height?.label}
             alt={podcast?.title}
@@ -34,7 +34,7 @@ export default function PodcastLayout() {
           <h2>{podcast?.title}</h2>
           <h3>Description</h3>
           <p>{podcast?.summary}</p>
-        </div>
+        </article>
       </Link>
       <Outlet />
     </>
