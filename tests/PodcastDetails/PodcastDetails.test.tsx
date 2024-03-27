@@ -7,7 +7,6 @@ import mock from "../__mocks__/Podcast-detail-sm.mock.json";
 import { LoadingProvider } from "../../src/features/common/LoadingContext";
 import {
   extractTitleFromTrack,
-  isoDateToDayMonthYear,
   millisecondsToHoursMinutes,
 } from "../../src/features/common/utils/FormattingHelpers";
 
