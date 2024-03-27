@@ -1,6 +1,5 @@
 .episodes-list {
-  display: inline-block;
-  vertical-align: top;
+  width: 850px;
 }
 .episodes-counter {
   font-size: 1.4rem;
@@ -16,14 +15,17 @@
 }
 
 .odd-row {
-  background-color: #eee;
+  background-color: #dfdfdf;
 }
 table {
-  width: 900px;
+  width: 850px;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 table th {
   text-align: left;
+}
+td {
+  padding: 7px;
 }

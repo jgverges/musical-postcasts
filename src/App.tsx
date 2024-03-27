@@ -12,18 +12,22 @@ import Header from "./features/common/Header";
 function App() {
   return (
     <LoadingProvider>
-      <Header />
-      <Routes>
-        <Route path="/" element={<PodcastList />} />
-        <Route path="/podcast" element={<PodcastLayout />}>
-          <Route path=":podcastId" index element={<PodcastDetails />} />
-          <Route
-            path=":podcastId/episode/:episodeId"
-            element={<EpisodeDetails />}
-          />
-        </Route>
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+      <div className="app">
+        <Header />
+        <div className="main-content">
+          <Routes>
+            <Route path="/" element={<PodcastList />} />
+            <Route path="/podcast" element={<PodcastLayout />}>
+              <Route path=":podcastId" index element={<PodcastDetails />} />
+              <Route
+                path=":podcastId/episode/:episodeId"
+                element={<EpisodeDetails />}
+              />
+            </Route>
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </div>
+      </div>
     </LoadingProvider>
   );
 }

@@ -15,11 +15,11 @@ export default function PodcastLayout() {
   }, []);
 
   return (
-    <div className="shared-podcast">
+    <>
       <Link
         to={`/podcast/${podcastId}`}
         state={{ data: podcast }}
-        className="inline-div"
+        className="no-underline"
       >
         <div className="single-card">
           <img
@@ -27,14 +27,12 @@ export default function PodcastLayout() {
             alt={podcast?.title}
             className="shared-podcast-img"
           />
-          <div className="details">
-            <h2>{podcast?.title}</h2>
-            <h4>Description</h4>
-            <p>{podcast?.summary}</p>
-          </div>
+          <h2>{podcast?.title}</h2>
+          <h4>Description</h4>
+          <p>{podcast?.summary}</p>
         </div>
       </Link>
       <Outlet />
-    </div>
+    </>
   );
 }

@@ -1,14 +1,17 @@
 body {
   background-color: #f5f5f5;
-  justify-content: center;
-  max-width: 1600px;
+  max-width: 1200px;
   margin: 0 auto;
 }
-.no-underline {
-  text-decoration: none;
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
-.inline-div {
-  display: inline-block;
-  margin-right: 3rem;
+.main-content {
+  display: flex;
+  flex: 1;
+}
+.no-underline {
   text-decoration: none;
 }

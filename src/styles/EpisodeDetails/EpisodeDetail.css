@@ -1,9 +1,7 @@
 .episode-detail {
-  display: inline-block;
-  vertical-align: top;
   background-color: #fff;
   width: 650px;
-  padding: 30px;
+  padding: 60px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
