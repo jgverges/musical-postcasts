@@ -28,7 +28,7 @@ export default function PodcastLayout() {
             className="shared-podcast-img"
           />
           <h2>{podcast?.title}</h2>
-          <h4>Description</h4>
+          <h3>Description</h3>
           <p>{podcast?.summary}</p>
         </div>
       </Link>
