@@ -3,22 +3,22 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import PodcastList from "../../src/features/PodcastList/components/PodcastList";
 import { LoadingProvider } from "../../src/features/common/LoadingContext";
 import usePodcastsList from "../../src/features/PodcastList/services/usePodcastsList";
-import { Podcast } from "../../src/features/PodcastList/models/Podcast";
+import { PodcastFiltered } from "../../src/features/PodcastList/models/PodcastFiltered";
 import { BrowserRouter } from "react-router-dom";
 
-const mockPodcasts: Podcast[] = [
+const mockPodcasts: PodcastFiltered[] = [
   {
     title: "Podcast 1",
     artist: "Artist 1",
     podcastId: "1",
-    image: "",
+    imageList: [],
     summary: "",
   },
   {
     title: "Podcast 2",
     artist: "Artist 2",
     podcastId: "2",
-    image: "",
+    imageList: [],
     summary: "",
   },
 ];

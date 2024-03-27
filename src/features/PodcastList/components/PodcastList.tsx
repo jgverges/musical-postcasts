@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PodcastListIem from "./PodcastListItem";
 import usePodcastsList from "../services/usePodcastsList";
-import { Podcast } from "../models/Podcast";
+import { PodcastFiltered } from "../models/PodcastFiltered";
 import "../../../styles/PodcastList/PodcastList.css";
 
 function PostcastList() {
@@ -13,10 +13,10 @@ function PostcastList() {
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
-
+  console.log({ podcasts });
   const filteredPodcasts =
     podcasts && podcasts.length > 0
-      ? podcasts.filter((podcast: Podcast) => {
+      ? podcasts.filter((podcast: PodcastFiltered) => {
           const podcastTitle = podcast.title.toLowerCase();
           const authorName = podcast.artist.toLowerCase();
           const searchTermLower = searchTerm.toLowerCase();
@@ -26,6 +26,7 @@ function PostcastList() {
           );
         })
       : [];
+  console.log({ filteredPodcasts });
 
   const filteredPodcastsLength = filteredPodcasts ? filteredPodcasts.length : 0;
 

@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { PodcastListResponse } from "../models/PodcastListResponse";
-import { type Podcast } from "../models/Podcast";
+import { type PodcastFiltered } from "../models/PodcastFiltered";
 import { filterPodcastData } from "./filterPodcastData";
 import { PODCAST_LIST_URL } from "./podcastListApiUrls";
 import { useLoading } from "../../common/LoadingContext";
 
 function usePodcastList(): {
-  podcasts: Podcast[] | null;
+  podcasts: PodcastFiltered[] | null;
   error: string | null;
 } {
-  const [podcasts, setPodcasts] = useState<Podcast[] | null>(null);
+  const [podcasts, setPodcasts] = useState<PodcastFiltered[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const { setLoading } = useLoading();
 
@@ -36,7 +36,7 @@ function usePodcastList(): {
           const response = await fetch(PODCAST_LIST_URL);
           const data: PodcastListResponse = await response.json();
 
-          const filteredPodcasts: Podcast[] = filterPodcastData(data);
+          const filteredPodcasts: PodcastFiltered[] = filterPodcastData(data);
 
           localStorage.setItem(podcastList, JSON.stringify(filteredPodcasts));
           localStorage.setItem(podcastListTimestamp, new Date().toISOString());

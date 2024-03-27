@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { Link, Outlet, useParams, useLocation } from "react-router-dom";
-import { Podcast } from "../../PodcastList/models/Podcast";
+import { PodcastFiltered } from "../../PodcastList/models/PodcastFiltered";
 import "../../../styles/PodcastDetails/PodcastLayout.css";
 
 export default function PodcastLayout() {
   const { podcastId } = useParams();
   const location = useLocation();
-  const [podcast, setPodcast] = useState<Podcast>();
+  const [podcast, setPodcast] = useState<PodcastFiltered>();
 
   useEffect(() => {
     const data = location.state?.data;
     if (data) setPodcast(data);
     if (!data) console.log("Does not find data in location");
   }, []);
-
+  const image170Height = podcast?.imageList.find(
+    (image) => image.attributes.height === "170"
+  );
+  console.log(image170Height?.label);
+  console.log("PodcastLayout", podcast);
   return (
     <>
       <Link
@@ -23,7 +27,7 @@ export default function PodcastLayout() {
       >
         <div className="single-card">
           <img
-            src={podcast?.image}
+            src={image170Height?.label}
             alt={podcast?.title}
             className="shared-podcast-img"
           />
