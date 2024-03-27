@@ -8,19 +8,27 @@
 }
 
 .card {
-  width: 200px;
-  height: 300px;
+  position: relative;
+  width: 220px;
+  height: 150px;
+
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  padding: 20px;
+  /* padding: 20px; */
   text-align: center;
+  margin-bottom: 100px;
 }
 
 .card img {
-  width: 100%;
+  width: 60%;
   border-radius: 50%;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
+
+  position: absolute; /* Posicionar la imagen absolutamente */
+  height: auto; /* Altura automática para mantener la proporción */
+  z-index: 10; /* Colocar la imagen detrás del contenido */
+  margin: -33% 0 0 -30%;
 }
 
 .card h2 {
@@ -33,5 +41,14 @@
   color: #777;
 }
 .card-details {
+  overflow: hidden; /* Ocultar texto que sobresalga */
+  text-overflow: ellipsis;
+  height: 150px;
+  overflow: hidden;
   color: rgb(7, 73, 7);
+  padding: 50px 15px 15px 15px;
+}
+h2 {
+  overflow: hidden; /* Ocultar texto que sobresalga */
+  text-overflow: ellipsis;
 }

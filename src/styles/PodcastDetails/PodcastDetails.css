@@ -29,3 +29,6 @@ table th {
 td {
   padding: 7px;
 }
+.cell-black {
+  color: black;
+}

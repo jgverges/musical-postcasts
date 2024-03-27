@@ -50,7 +50,7 @@ function PostcastDetails() {
                         key={detail?.episodeUrl}
                         to={`/podcast/${podcastId}/episode/${podcastId}`}
                         state={{ data: detail }}
-                        className="no-underline"
+                        className="no-underline cell-black"
                       >
                         {isoDateToDayMonthYear(detail.releaseDate)}
                       </Link>
@@ -60,7 +60,7 @@ function PostcastDetails() {
                         key={detail?.episodeUrl}
                         to={`/podcast/${podcastId}/episode/${podcastId}`}
                         state={{ data: detail }}
-                        className="no-underline"
+                        className="no-underline cell-black"
                       >
                         {millisecondsToHoursMinutes(detail.trackTimeMillis)}
                       </Link>
