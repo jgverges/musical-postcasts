@@ -19,7 +19,7 @@ function AudioPlayer({ src }: AudioPlayerProps) {
     console.log(e.currentTarget.error?.code);
   };
   return (
-    <div>
+    <figure>
       <audio
         src={src}
         controls
@@ -28,7 +28,7 @@ function AudioPlayer({ src }: AudioPlayerProps) {
       >
         Your browser does not support the audio element.
       </audio>
-    </div>
+    </figure>
   );
 }
 
