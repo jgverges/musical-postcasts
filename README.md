@@ -124,6 +124,54 @@ npm run build
 - [Top 100 Podcasts](https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json)
 - [Podcast Details](https://itunes.apple.com/lookup?id=934552872&media=podcast&entity=podcastEpisode&limit=20)
 
+## Information Processing, Filtering, and Conversions
+
+### Interpreted HTML Rendering
+
+The description of the episodes sometimes contains HTML and should be displayed interpreted (not escaped). This is the default behavior of React when rendering, although treatment has been added to allow line breaks.
+
+This is how we achieve rendering:
+
+```
+Become a Patron of The Joe Budden Podcast for additional bonus episodes and visual content for all things JBP! Join our Patreon here: www.patreon.com/joebudden
+Sleeper Picks:
+Joe | Marie Dahlstrøm - “Safe Place”
+Ice | Flo Milli (feat. Gunna) - “Edible”
+```
+
+Instead of the default React behavior:
+
+```
+Become a Patron of The Joe Budden Podcast for additional bonus episodes and visual content for all things JBP! Join our Patreon here: www.patreon.com/joebudden Sleeper Picks: Joe | Marie Dahlstrøm - “Safe Place” Ice | Flo Milli (feat. Gunna) - “Edible” ”
+```
+
+### JSON List Filtering
+
+The podcast list API call returns a JSON with thousands of lines corresponding to the `PodcastListResponse` interface.
+
+This JSON is filtered to use only the minimum necessary information, using the `PodcastFiltered` interface instead of `PodcastI`. This facilitates handling information in `localstorage` as well as podcast searches without the need to apply `React Hooks`.
+
+### Date Treatments
+
+- **Dates**: Rendered in a more readable format.
+- **Milliseconds**: Converted to hours:minutes format.
+
+### Track Title Filtering
+
+**Track Titles**: "trackName" information has been filtered to directly display the title, removing the episode number. For example:
+
+Instead the original: "Episode 709 | \"Ish Type Beat\""
+
+Renders: "Ish Type Beat"
+
+### Podcast Card Title Length Limitation
+
+To prevent overflow with some excessively long titles that broke the card layout, such as `BROKEN RECORD WITH RICK RUBIN, MALCOLM GLADWELL, BRUCE HEADLAM AND JUSTIN RICHMOND`, their maximum length has been truncated.
+
+## Version Control
+
+The project uses `git` and `GitHub` under the `conventional commit` protocol. It also includes explanatory `tags`.
+
 ## Development Requirements
 
 The application has been designed based on the supplied requirements listed in a PDF file..
