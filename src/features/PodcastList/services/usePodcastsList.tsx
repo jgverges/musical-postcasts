@@ -14,6 +14,8 @@ function usePodcastList(): {
   const { setLoading } = useLoading();
 
   useEffect(() => {
+    const abortCont = new AbortController();
+
     const fetchPodcasts = async () => {
       const podcastList = "podcastList";
       const podcastListTimestamp = "podcastList_Timestamp";
@@ -33,29 +35,44 @@ function usePodcastList(): {
             return;
           }
         } else {
-          const response = await fetch(PODCAST_LIST_URL);
-          const data: PodcastListResponse = await response.json();
+          const response = await fetch(PODCAST_LIST_URL, {
+            signal: abortCont.signal,
+          });
+          if (!abortCont.signal.aborted) {
+            const data: PodcastListResponse = await response.json();
 
-          const filteredPodcasts: PodcastFiltered[] = filterPodcastData(data);
+            const filteredPodcasts: PodcastFiltered[] = filterPodcastData(data);
 
-          localStorage.setItem(podcastList, JSON.stringify(filteredPodcasts));
-          localStorage.setItem(podcastListTimestamp, new Date().toISOString());
-          setPodcasts(filteredPodcasts);
+            localStorage.setItem(podcastList, JSON.stringify(filteredPodcasts));
+            localStorage.setItem(
+              podcastListTimestamp,
+              new Date().toISOString()
+            );
+            setPodcasts(filteredPodcasts);
+          }
         }
       } catch (error) {
-        if (error instanceof Error) {
-          setError(error.message);
-          console.log(error);
+        if (abortCont.signal.aborted) {
+          // console.log("CLEAN UP with ABORT CONTROLLER");
         } else {
-          setError("An unknown error occurred");
-          console.log("An unknown error occurred", error);
+          if (error instanceof Error) {
+            setError(error.message);
+            console.log(error);
+          } else {
+            setError("An unknown error occurred");
+            console.log("An unknown error occurred", error);
+          }
         }
       } finally {
-        setLoading(false);
+        if (!abortCont.signal.aborted) {
+          setLoading(false);
+        }
       }
     };
 
     fetchPodcasts();
+
+    return () => abortCont.abort();
   }, [setLoading]);
   if (error) console.log(error);
 

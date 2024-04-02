@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useParams } from "react-router-dom";
 import {
   extractTitleFromTrack,
@@ -12,7 +12,10 @@ function PostcastDetails() {
   const { podcastId } = useParams();
   const { results, error } = usePodcastDetails(podcastId);
 
-  if (error) console.log(error);
+  if (error) {
+    console.log(error);
+    return;
+  }
 
   const resultsLength = results && results.length ? results.length - 1 : 0;
   return (
@@ -29,7 +32,15 @@ function PostcastDetails() {
         <tbody>
           {results &&
             results.map((detail, index) => {
-              if ("episodeUrl" in detail)
+              if ("episodeUrl" in detail) {
+                if (
+                  !detail.trackName ||
+                  !detail.trackTimeMillis ||
+                  !detail.releaseDate
+                )
+                  console.log(
+                    `Missing information  in episode: ${detail?.collectionName}`
+                  );
                 return (
                   <tr
                     key={index}
@@ -62,11 +73,13 @@ function PostcastDetails() {
                         state={{ data: detail }}
                         className="no-underline cell-black"
                       >
-                        {millisecondsToHoursMinutes(detail.trackTimeMillis)}
+                        {detail?.trackTimeMillis &&
+                          millisecondsToHoursMinutes(detail.trackTimeMillis)}
                       </Link>
                     </td>
                   </tr>
                 );
+              }
             })}
         </tbody>
       </table>

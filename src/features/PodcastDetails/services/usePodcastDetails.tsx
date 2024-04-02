@@ -21,6 +21,7 @@ export function usePodcastDetails(podcastId: string | undefined): {
     encodeURIComponent(`${PODCAST_DETAIL_BASE_URL}&id=${podcastId}`);
 
   useEffect(() => {
+    const abortCont = new AbortController();
     if (!podcastId) return;
 
     const podcastDetailsSelected = `podcastDetails-${podcastId}`;
@@ -44,26 +45,48 @@ export function usePodcastDetails(podcastId: string | undefined): {
             return;
           }
         } else {
-          const response = await fetch(PROXY_URL);
-          const data = await response.json();
-          const { results } = await JSON.parse(data.contents);
-          localStorage.setItem(podcastDetailsSelected, JSON.stringify(results));
-          localStorage.setItem(
-            podcastDetailsTimestampSelected,
-            new Date().toISOString()
-          );
-          setResults(results);
+          const response = await fetch(PROXY_URL, {
+            signal: abortCont.signal,
+          });
+
+          if (!abortCont.signal.aborted) {
+            const data = await response.json();
+            const { results } = await JSON.parse(data.contents);
+            localStorage.setItem(
+              podcastDetailsSelected,
+              JSON.stringify(results)
+            );
+            localStorage.setItem(
+              podcastDetailsTimestampSelected,
+              new Date().toISOString()
+            );
+            setResults(results);
+          }
         }
       } catch (error) {
-        setError("An error occurred while fetching podcast details");
-        console.log("An error occurred while fetching podcast details", error);
+        if (abortCont.signal.aborted) {
+          // console.log("CLEAN UP with ABORT CONTROLLER");
+        } else {
+          setError("An error occurred while fetching podcast details");
+          console.log(
+            "An error occurred while fetching podcast details",
+            error
+          );
+        }
       } finally {
-        setLoading(false);
+        if (!abortCont.signal.aborted) {
+          setLoading(false);
+        }
       }
     };
 
     fetchPodcastDetails();
+
+    return () => {
+      abortCont.abort();
+    };
   }, [podcastId, setLoading]);
+
   if (error) console.log(error);
 
   return { results, error };

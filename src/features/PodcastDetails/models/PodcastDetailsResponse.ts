@@ -56,7 +56,7 @@ export type Episode = {
   contentAdvisoryRating?: string;
   trackViewUrl?: string;
   collectionViewUrl?: string;
-  trackTimeMillis: number;
+  trackTimeMillis?: number; // some episodes don't have trackTimeMillis!
   artistViewUrl?: string;
   artworkUrl60?: string;
   kind: string;
