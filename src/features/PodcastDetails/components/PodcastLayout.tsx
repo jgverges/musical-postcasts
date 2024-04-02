@@ -16,8 +16,7 @@ export default function PodcastLayout() {
   const image170Height = podcast?.imageList.find(
     (image) => image.attributes.height === "170"
   );
-  console.log(image170Height?.label);
-  console.log("PodcastLayout", podcast);
+
   return (
     <>
       <Link

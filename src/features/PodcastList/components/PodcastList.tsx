@@ -13,7 +13,7 @@ function PostcastList() {
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
-  console.log({ podcasts });
+
   const filteredPodcasts =
     podcasts && podcasts.length > 0
       ? podcasts.filter((podcast: PodcastFiltered) => {
@@ -26,7 +26,6 @@ function PostcastList() {
           );
         })
       : [];
-  console.log({ filteredPodcasts });
 
   const filteredPodcastsLength = filteredPodcasts ? filteredPodcasts.length : 0;
 

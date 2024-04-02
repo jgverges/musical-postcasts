@@ -187,5 +187,3 @@ Additionally, it has followed the following received recommendations:
 - Preferably use native CSS without libraries.
 
 - Include tests.
-
-- Document the README file.
