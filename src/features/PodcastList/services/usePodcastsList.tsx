@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { PodcastListResponse } from "../models/PodcastListResponse";
 import { type PodcastFiltered } from "../models/PodcastFiltered";
 import { filterPodcastData } from "./filterPodcastData";
-import { PODCAST_LIST_URL } from "./podcastListApiUrls";
-import { useLoading } from "../../common/LoadingContext";
+import { useLoading } from "../../../common/contexts/LoadingContext";
+import { PODCAST_LIST_URL } from "../../../common/constants/apiURLConstants";
 
 function usePodcastList(): {
   podcasts: PodcastFiltered[] | null;

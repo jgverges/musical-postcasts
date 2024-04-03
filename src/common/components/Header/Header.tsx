@@ -1,8 +1,8 @@
 import React from "react";
-import { useLoading } from "./LoadingContext";
+import { useLoading } from "../../contexts/LoadingContext";
 import { Link } from "react-router-dom";
-import LoadingIndicator from "./LoadingIndicator";
-import "../../styles/Header.css";
+import LoadingIndicator from "../Loading/LoadingIndicator";
+import "./Header.css";
 
 function Header() {
   const { loading } = useLoading();

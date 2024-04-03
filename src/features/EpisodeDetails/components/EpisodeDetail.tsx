@@ -1,8 +1,8 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import "../../../styles/EpisodeDetails/EpisodeDetail.css";
-import { extractTitleFromTrack } from "../../common/utils/FormattingHelpers";
-import AudioPlayer from "../../common/AudioPlayer";
+import "./EpisodeDetail.css";
+import { extractTitleFromTrack } from "../../../common/utils/FormattingHelpers";
+import AudioPlayer from "../../../common/components/AudioPlayer";
 
 function EpisodeDetails() {
   const location = useLocation();

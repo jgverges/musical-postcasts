@@ -7,7 +7,7 @@ This project is a mini-application for listening to musical podcasts. It is buil
 
 ## Features
 
-The project `musical-podcasts` is based on hexagonal architecture, which corresponds to its three main views:
+The project `musical-podcasts` is based on its three main views:
 
 - **PodcastList**: Main view who displays the list of the top 100 most popular podcasts.
 - **Podcast Details**: Shows detailed information about a podcast and its episodes.
@@ -15,48 +15,64 @@ The project `musical-podcasts` is based on hexagonal architecture, which corresp
 
 ### Project tree diagram
 
-```css
-
 musical-podcasts/
-│
-├── src/
-│   ├── features/
-│   │   ├── PodcastList/
-│   │   │   ├── components/
-│   │   │   ├── models/
-│   │   │   └── services/
-│   │   │
-│   │   ├── PodcastDetails/
-│   │   │   ├── components/
-│   │   │   ├── models/
-│   │   │   └── services/
-│   │   │
-│   │   ├── EpisodeDetails/
-│   │   │   ├── components/
-│   │   │   ├── models/
-│   │   │   └── services/
-│   │   └── common/
-│   │
-│   ├── styles/
-│   │   ├── EpisodeDetails/
-│   │   ├── PodcastDetails/
-│   │   ├── PodcastList/
-│   │   └── main.css
-│   ├── index.tsx
-│   └── App.tsx
-│
-├── tests/
-│   ├── __mocks____
-│   ├── EpisodeDetails/
-│   ├── PodcastDetails/
-│   └── PodcastList/
-|
-├── webpack.config.js
-├── tsconfig.json
-└── package.json
+
+```
+.
+|-- LICENSE
+|-- README.md
+|-- jest.config.js
+|-- package-lock.json
+|-- package.json
+|-- public
+|   `-- index.html
+|-- src
+|   |-- App.tsx
+|   |-- common
+|   |   |-- components
+|   |   |   |-- AudioPlayer.tsx
+|   |   |   |-- Header
+|   |   |   |-- Loading
+|   |   |   `-- NotFoundPage.tsx
+|   |   |-- constants
+|   |   |   |-- apiURLConstants.ts
+|   |   |   `-- routesConstants.ts
+|   |   |-- contexts
+|   |   |   `-- LoadingContext.tsx
+|   |   `-- utils
+|   |       `-- FormattingHelpers.ts
+|   |-- features
+|   |   |-- EpisodeDetails
+|   |   |   `-- components
+|   |   |-- PodcastDetails
+|   |   |   |-- components
+|   |   |   |-- models
+|   |   |   `-- services
+|   |   `-- PodcastList
+|   |       |-- components
+|   |       |-- models
+|   |       `-- services
+|   |-- index.tsx
+|   `-- styles.css
+|-- tests
+|   |-- EpisodeDetails
+|   |   `-- EpisodeDetail.test.tsx
+|   |-- PodcastDetails
+|   |   `-- PodcastDetails.test.tsx
+|   |-- PodcastList
+|   |   `-- PodcastList.test.tsx
+|   `-- __mocks__
+|       |-- Podcast-detail-sm.mock.json
+|       |-- Podcast-detail.mock.json
+|       |-- Podcasts.mock.json
+|       |-- filterdList.mock.json
+|       `-- filteredPodcast.json
+|-- tsconfig.json
+`-- webpack.config.js
+
 ```
 
-This structure organizes the project by features, where each main function (view) has its own directory in src/features/, which contains its models, services and components. This follows the hexagonal architecture approach, where features are encapsulated and separated from each other, facilitating maintainability and scalability of the project.
+This structure organizes the project by features, where each main function (view) has its own directory in src/features/, which contains its models, services and components.
 
 ## Running the Application
 

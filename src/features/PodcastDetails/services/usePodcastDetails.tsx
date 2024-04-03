@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { PodcastDetail, Episode } from "../models/PodcastDetailsResponse";
+
+import { useLoading } from "../../../common/contexts/LoadingContext";
 import {
   ALLORIGIN_URL,
   PODCAST_DETAIL_BASE_URL,
-} from "./podcastDetailsApiUrls";
-import { useLoading } from "../../common/LoadingContext";
+} from "../../../common/constants/apiURLConstants";
 
 export function usePodcastDetails(podcastId: string | undefined): {
   results: (PodcastDetail | Episode)[] | null;

@@ -4,11 +4,11 @@ import PodcastDetails from "../../src/features/PodcastDetails/components/Podcast
 import usePodcastDetails from "../../src/features/PodcastDetails/services/usePodcastDetails";
 import { BrowserRouter } from "react-router-dom";
 import mock from "../__mocks__/Podcast-detail-sm.mock.json";
-import { LoadingProvider } from "../../src/features/common/LoadingContext";
+import { LoadingProvider } from "../../src/common/contexts/LoadingContext";
 import {
   extractTitleFromTrack,
   millisecondsToHoursMinutes,
-} from "../../src/features/common/utils/FormattingHelpers";
+} from "../../src/common/utils/FormattingHelpers";
 
 const mockEpisodes = mock.results.filter((detail) => "episodeUrl" in detail);
 

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useLoading } from "./LoadingContext";
+import { useLoading } from "../contexts/LoadingContext";
 
 interface AudioPlayerProps {
   src: string;

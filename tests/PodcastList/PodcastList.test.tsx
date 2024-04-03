@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import PodcastList from "../../src/features/PodcastList/components/PodcastList";
-import { LoadingProvider } from "../../src/features/common/LoadingContext";
+import { LoadingProvider } from "../../src/common/contexts/LoadingContext";
 import usePodcastsList from "../../src/features/PodcastList/services/usePodcastsList";
 import { PodcastFiltered } from "../../src/features/PodcastList/models/PodcastFiltered";
 import { BrowserRouter } from "react-router-dom";

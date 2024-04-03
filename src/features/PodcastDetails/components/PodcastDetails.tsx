@@ -4,8 +4,8 @@ import {
   extractTitleFromTrack,
   isoDateToDayMonthYear,
   millisecondsToHoursMinutes,
-} from "../../common/utils/FormattingHelpers";
-import "../../../styles/PodcastDetails/PodcastDetails.css";
+} from "../../../common/utils/FormattingHelpers";
+import "./PodcastDetails.css";
 import usePodcastDetails from "../services/usePodcastDetails";
 
 function PostcastDetails() {

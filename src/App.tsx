@@ -1,13 +1,19 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import EpisodeDetails from "./features/EpisodeDetails/components/EpisodeDetail";
-import NotFoundPage from "./features/common/NotFoundPage";
+import NotFoundPage from "./common/components/NotFoundPage";
 import PodcastList from "../src/features/PodcastList/components/PodcastList";
 import PodcastDetails from "../src/features/PodcastDetails/components/PodcastDetails";
 import PodcastLayout from "./features/PodcastDetails/components/PodcastLayout";
-import "./styles/main.css";
-import { LoadingProvider } from "./features/common/LoadingContext";
-import Header from "./features/common/Header";
+import "./styles.css";
+import { LoadingProvider } from "./common/contexts/LoadingContext";
+import Header from "./common/components/Header/Header";
+import {
+  EPISODE_DETAILS_ROUTE,
+  PODCAST_DETAILS_ROUTE,
+  PODCAST_ROUTE,
+  ROOT_ROUTE,
+} from "./common/constants/routesConstants";
 
 function App() {
   return (
@@ -16,11 +22,15 @@ function App() {
         <Header />
         <div className="main-content">
           <Routes>
-            <Route path="/" element={<PodcastList />} />
-            <Route path="/podcast" element={<PodcastLayout />}>
-              <Route path=":podcastId" index element={<PodcastDetails />} />
+            <Route path={ROOT_ROUTE} element={<PodcastList />} />
+            <Route path={PODCAST_ROUTE} element={<PodcastLayout />}>
               <Route
-                path=":podcastId/episode/:episodeId"
+                path={PODCAST_DETAILS_ROUTE}
+                index
+                element={<PodcastDetails />}
+              />
+              <Route
+                path={EPISODE_DETAILS_ROUTE}
                 element={<EpisodeDetails />}
               />
             </Route>
