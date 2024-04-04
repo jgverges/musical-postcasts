@@ -5,10 +5,6 @@ import {
   Results,
 } from "../models/PodcastDetailsResponse";
 import { useLoading } from "../../../common/contexts/LoadingContext";
-import {
-  ALLORIGIN_URL,
-  PODCAST_DETAIL_BASE_URL,
-} from "../../../common/constants/apiURLConstants";
 import { getPodcastDetailWithCache } from "../../../common/api/fetchApiData";
 
 export function usePodcastDetails(podcastId: string | undefined): {
@@ -21,22 +17,15 @@ export function usePodcastDetails(podcastId: string | undefined): {
   const [error, setError] = useState<string | null>(null);
   const { setLoading } = useLoading();
 
-  const PROXY_URL =
-    ALLORIGIN_URL +
-    encodeURIComponent(`${PODCAST_DETAIL_BASE_URL}&id=${podcastId}`);
-
   useEffect(() => {
     const abortCont = new AbortController();
     if (!podcastId) return;
-
-    const podcastDetailsSelected = `podcastDetails-${podcastId}`;
 
     const fetchPodcastDetails = async () => {
       try {
         setLoading(true);
         const cachedData = (await getPodcastDetailWithCache(
-          PROXY_URL,
-          podcastDetailsSelected,
+          podcastId,
           abortCont.signal
         )) as Results[];
         if (cachedData) {

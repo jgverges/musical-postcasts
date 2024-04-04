@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { PodcastFiltered } from "../models/PodcastFiltered";
 import "./PodcastListItem.css";
+import { PODCAST_ROUTE } from "../../../common/constants/routesConstants";
 
 interface PodcastListItemProps {
   podcast: PodcastFiltered;
@@ -13,7 +14,7 @@ function PodcastListItem({ podcast }: PodcastListItemProps) {
   return (
     <>
       <Link
-        to={`/podcast/${podcast.podcastId}`}
+        to={`${PODCAST_ROUTE}/${podcast.podcastId}`}
         state={{ data: podcast }}
         className="no-underline"
       >

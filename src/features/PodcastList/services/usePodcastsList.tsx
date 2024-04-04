@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { type PodcastFiltered } from "../models/PodcastFiltered";
 import { useLoading } from "../../../common/contexts/LoadingContext";
-import { PODCAST_LIST_URL } from "../../../common/constants/apiURLConstants";
 import { getPodcastsFilteredWithCache } from "../../../common/api/fetchApiData";
 
 function usePodcastList(): {
@@ -16,15 +15,9 @@ function usePodcastList(): {
     const abortCont = new AbortController();
 
     const fetchPodcasts = async () => {
-      const podcastList = "podcastList";
-
       try {
         setLoading(true);
-        const cachedList = await getPodcastsFilteredWithCache(
-          PODCAST_LIST_URL,
-          podcastList,
-          abortCont.signal
-        );
+        const cachedList = await getPodcastsFilteredWithCache(abortCont.signal);
         if (cachedList) {
           setPodcasts(cachedList);
           return;

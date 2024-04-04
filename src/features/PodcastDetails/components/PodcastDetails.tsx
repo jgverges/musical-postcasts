@@ -7,6 +7,7 @@ import {
 } from "../../../common/utils/FormattingHelpers";
 import "./PodcastDetails.css";
 import usePodcastDetails from "../services/usePodcastDetails";
+import { PODCAST_ROUTE } from "../../../common/constants/routesConstants";
 
 function PostcastDetails() {
   const { podcastId } = useParams();
@@ -49,7 +50,7 @@ function PostcastDetails() {
                     <td>
                       <Link
                         key={detail?.episodeUrl}
-                        to={`/podcast/${podcastId}/episode/${podcastId}`}
+                        to={`${PODCAST_ROUTE}/${podcastId}/episode/${podcastId}`}
                         state={{ data: detail }}
                         className="no-underline"
                       >
@@ -59,7 +60,7 @@ function PostcastDetails() {
                     <td>
                       <Link
                         key={detail?.episodeUrl}
-                        to={`/podcast/${podcastId}/episode/${podcastId}`}
+                        to={`${PODCAST_ROUTE}/${podcastId}/episode/${podcastId}`}
                         state={{ data: detail }}
                         className="no-underline cell-black"
                       >
@@ -69,7 +70,7 @@ function PostcastDetails() {
                     <td>
                       <Link
                         key={detail?.episodeUrl}
-                        to={`/podcast/${podcastId}/episode/${podcastId}`}
+                        to={`${PODCAST_ROUTE}/${podcastId}/episode/${podcastId}`}
                         state={{ data: detail }}
                         className="no-underline cell-black"
                       >

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, Outlet, useParams, useLocation } from "react-router-dom";
 import { PodcastFiltered } from "../../PodcastList/models/PodcastFiltered";
 import "./PodcastLayout.css";
+import { PODCAST_ROUTE } from "../../../common/constants/routesConstants";
 
 export default function PodcastLayout() {
   const { podcastId } = useParams();
@@ -20,7 +21,7 @@ export default function PodcastLayout() {
   return (
     <>
       <Link
-        to={`/podcast/${podcastId}`}
+        to={`${PODCAST_ROUTE}/${podcastId}`}
         state={{ data: podcast }}
         className="no-underline"
       >
