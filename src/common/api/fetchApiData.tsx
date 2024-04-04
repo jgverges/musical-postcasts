@@ -1,3 +1,7 @@
+import {
+  ParsedContents,
+  PodcastDetailResponse,
+} from "../../features/PodcastDetails/models/PodcastDetailsResponse";
 import { PodcastFiltered } from "../../features/PodcastList/models/PodcastFiltered";
 import { PodcastListResponse } from "../../features/PodcastList/models/PodcastListResponse";
 import { filterPodcastData } from "../../features/PodcastList/services/filterPodcastData";
@@ -64,9 +68,10 @@ export function getPodcastDetailWithCache(
   const localStorageData = getLocalStorageDataWithinOneDay(cacheKey);
   if (localStorageData) return localStorageData;
 
-  return fetchApiData<any>(url, signal).then((data) => {
+  return fetchApiData<PodcastDetailResponse>(url, signal).then((data) => {
     if (!data) return null;
-    const { results } = JSON.parse(data.contents);
+    const parsedContents = JSON.parse(data.contents) as ParsedContents;
+    const results = parsedContents.results;
     saveToLocalStorage(cacheKey, JSON.stringify(results));
     return results;
   });

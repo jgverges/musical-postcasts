@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { PodcastDetail, Episode } from "../models/PodcastDetailsResponse";
+import {
+  PodcastDetail,
+  Episode,
+  Results,
+} from "../models/PodcastDetailsResponse";
 import { useLoading } from "../../../common/contexts/LoadingContext";
 import {
   ALLORIGIN_URL,
@@ -30,11 +34,11 @@ export function usePodcastDetails(podcastId: string | undefined): {
     const fetchPodcastDetails = async () => {
       try {
         setLoading(true);
-        const cachedData = await getPodcastDetailWithCache(
+        const cachedData = (await getPodcastDetailWithCache(
           PROXY_URL,
           podcastDetailsSelected,
           abortCont.signal
-        );
+        )) as Results[];
         if (cachedData) {
           setResults(cachedData);
           return;

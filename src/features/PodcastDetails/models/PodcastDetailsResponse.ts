@@ -1,69 +1,82 @@
 export type PodcastDetail = {
-  wrapperType: string;
-  kind: string;
   artistId?: number;
-  collectionId: number;
-  trackId?: number;
   artistName?: string;
-  collectionName: string;
-  trackName?: string;
-  collectionCensoredName?: string;
-  trackCensoredName?: string;
   artistViewUrl?: string;
-  collectionViewUrl?: string;
-  feedUrl?: string;
-  trackViewUrl?: string;
+  artworkUrl100?: string;
   artworkUrl30?: string;
   artworkUrl60?: string;
-  artworkUrl100?: string;
-  collectionPrice?: number;
-  trackPrice?: number;
-  collectionHdPrice?: number;
-  releaseDate: string;
+  artworkUrl600?: string;
+  collectionCensoredName?: string;
   collectionExplicitness: string;
-  trackExplicitness?: string;
-  trackCount?: number;
-  trackTimeMillis?: number;
+  collectionHdPrice?: number;
+  collectionId: number;
+  collectionName: string;
+  collectionPrice?: number;
+  collectionViewUrl?: string;
+  contentAdvisoryRating?: string;
   country: string;
   currency: string;
-  primaryGenreName?: string;
-  contentAdvisoryRating?: string;
-  artworkUrl600?: string;
+  feedUrl?: string;
   genreIds?: string[];
   genres?: string[];
+  kind: string;
+  primaryGenreName?: string;
+  releaseDate: string;
+  trackCensoredName?: string;
+  trackCount?: number;
+  trackExplicitness?: string;
+  trackId?: number;
+  trackName?: string;
+  trackPrice?: number;
+  trackTimeMillis?: number;
+  trackViewUrl?: string;
+  wrapperType: string;
 };
 
 export type Episode = {
-  country: string;
+  artistIds?: number[];
+  artistViewUrl?: string;
   artworkUrl160?: string;
-  episodeFileExtension?: string;
-  episodeContentType?: string;
+  artworkUrl60?: string;
   artworkUrl600?: string;
-  previewUrl?: string;
   closedCaptioning?: string;
   collectionId: number;
   collectionName: string;
-  episodeUrl: string;
-  genres?: { name: string; id: string }[];
+  collectionViewUrl?: string;
+  contentAdvisoryRating?: string;
+  country: string;
+  description: string;
+  episodeContentType?: string;
+  episodeFileExtension?: string;
   episodeGuid?: string;
+  episodeUrl: string;
+  feedUrl: string;
+  genres?: { name: string; id: string }[];
+  kind: string;
+  previewUrl?: string;
+  releaseDate: string;
+  shortDescription?: string;
   trackId: number;
   trackName: string;
-  artistIds?: number[];
-  shortDescription?: string;
-  feedUrl: string;
-  description: string;
-  releaseDate: string;
-  contentAdvisoryRating?: string;
-  trackViewUrl?: string;
-  collectionViewUrl?: string;
   trackTimeMillis?: number; // some episodes don't have trackTimeMillis!
-  artistViewUrl?: string;
-  artworkUrl60?: string;
-  kind: string;
+  trackViewUrl?: string;
   wrapperType: string;
 };
+interface Status {
+  url: string;
+  content_type: string;
+  http_code: number;
+  response_time: number;
+  content_length: number;
+}
+export type Results = PodcastDetail | Episode;
+
+export interface ParsedContents {
+  resultCount: number;
+  results: Results[];
+}
 
 export type PodcastDetailResponse = {
-  resultCount: number;
-  results: (PodcastDetail | Episode)[];
+  contents: string;
+  status: Status;
 };
