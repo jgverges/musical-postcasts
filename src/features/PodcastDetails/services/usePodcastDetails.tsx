@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { PodcastDetail, Episode } from "../models/PodcastDetailsResponse";
-
 import { useLoading } from "../../../common/contexts/LoadingContext";
 import {
   ALLORIGIN_URL,
   PODCAST_DETAIL_BASE_URL,
 } from "../../../common/constants/apiURLConstants";
+import { getPodcastDetailWithCache } from "../../../common/api/fetchApiData";
 
 export function usePodcastDetails(podcastId: string | undefined): {
   results: (PodcastDetail | Episode)[] | null;
@@ -26,53 +26,24 @@ export function usePodcastDetails(podcastId: string | undefined): {
     if (!podcastId) return;
 
     const podcastDetailsSelected = `podcastDetails-${podcastId}`;
-    const podcastDetailsTimestampSelected = `podcastDetails-${podcastId}_Timestamp`;
 
     const fetchPodcastDetails = async () => {
       try {
         setLoading(true);
-        const storedDetails = localStorage.getItem(podcastDetailsSelected);
-        const storedTimestamp = localStorage.getItem(
-          podcastDetailsTimestampSelected
+        const cachedData = await getPodcastDetailWithCache(
+          PROXY_URL,
+          podcastDetailsSelected,
+          abortCont.signal
         );
-
-        if (storedDetails && storedTimestamp) {
-          const lastFetchTime = new Date(storedTimestamp).getTime();
-          const currentTime = new Date().getTime();
-          const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
-
-          if (currentTime - lastFetchTime < oneDayInMilliseconds) {
-            setResults(JSON.parse(storedDetails));
-            return;
-          }
-        } else {
-          const response = await fetch(PROXY_URL, {
-            signal: abortCont.signal,
-          });
-
-          if (!abortCont.signal.aborted) {
-            const data = await response.json();
-            const { results } = await JSON.parse(data.contents);
-            localStorage.setItem(
-              podcastDetailsSelected,
-              JSON.stringify(results)
-            );
-            localStorage.setItem(
-              podcastDetailsTimestampSelected,
-              new Date().toISOString()
-            );
-            setResults(results);
-          }
+        if (cachedData) {
+          setResults(cachedData);
+          return;
         }
       } catch (error) {
         if (abortCont.signal.aborted) {
-          // console.log("CLEAN UP with ABORT CONTROLLER");
+          console.log("clean up fetch");
         } else {
           setError("An error occurred while fetching podcast details");
-          console.log(
-            "An error occurred while fetching podcast details",
-            error
-          );
         }
       } finally {
         if (!abortCont.signal.aborted) {
@@ -87,8 +58,6 @@ export function usePodcastDetails(podcastId: string | undefined): {
       abortCont.abort();
     };
   }, [podcastId, setLoading]);
-
-  if (error) console.log(error);
 
   return { results, error };
 }
