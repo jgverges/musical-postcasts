@@ -1,58 +1,31 @@
-import { useEffect, useState } from "react";
+import { ParsedContents } from "../models/PodcastDetailsResponse";
+import { fetchApiData } from "../../../common/api/fetchApiData";
 import {
-  PodcastDetail,
-  Episode,
-  Results,
-} from "../models/PodcastDetailsResponse";
-import { useLoading } from "../../../common/contexts/LoadingContext";
-import { getPodcastDetailWithCache } from "../../../common/api/fetchApiData";
+  ALLORIGIN_URL,
+  PODCAST_DETAIL_BASE_URL,
+} from "../../../common/constants/apiURLConstants";
+import { useRequest } from "../../../common/api/useRequest";
+import { DETAIL_CACHE_KEY } from "../../../common/constants/localStorageConstants";
 
-export function usePodcastDetails(podcastId: string | undefined): {
-  results: (PodcastDetail | Episode)[] | null;
-  error: string | null;
-} {
-  const [results, setResults] = useState<(PodcastDetail | Episode)[] | null>(
-    null
-  );
-  const [error, setError] = useState<string | null>(null);
-  const { setLoading } = useLoading();
-
-  useEffect(() => {
-    const abortCont = new AbortController();
-    if (!podcastId) return;
-
-    const fetchPodcastDetails = async () => {
-      try {
-        setLoading(true);
-        const cachedData = (await getPodcastDetailWithCache(
-          podcastId,
-          abortCont.signal
-        )) as Results[];
-        if (cachedData) {
-          setResults(cachedData);
-          return;
-        }
-      } catch (error) {
-        if (abortCont.signal.aborted) {
-          console.log("clean up fetch");
-        } else {
-          setError("An error occurred while fetching podcast details");
-        }
-      } finally {
-        if (!abortCont.signal.aborted) {
-          setLoading(false);
-        }
-      }
-    };
-
-    fetchPodcastDetails();
-
-    return () => {
-      abortCont.abort();
-    };
-  }, [podcastId, setLoading]);
-
+async function fetchPodcastDetails(
+  podcastId: string,
+  abortController: AbortController
+) {
+  if (!podcastId) return null;
+  const PROXY_URL =
+    ALLORIGIN_URL +
+    encodeURIComponent(`${PODCAST_DETAIL_BASE_URL}&id=${podcastId}`);
+  const data = await fetchApiData(PROXY_URL, abortController.signal);
+  if (!data) return null;
+  const parsedContents = (await JSON.parse(data.contents)) as ParsedContents;
+  const results = await parsedContents.results;
+  return results;
+}
+export function usePodcastDetails(podcastId: string) {
+  const { data: results, error } = useRequest({
+    fetchFn: (abortController: AbortController) =>
+      fetchPodcastDetails(podcastId, abortController),
+    cachekey: `${DETAIL_CACHE_KEY}-${podcastId}`,
+  });
   return { results, error };
 }
-
-export default usePodcastDetails;

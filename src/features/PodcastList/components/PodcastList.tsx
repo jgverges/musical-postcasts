@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import PodcastListIem from "./PodcastListItem";
-import usePodcastsList from "../services/usePodcastsList";
+import { usePodcastList } from "../services/usePodcastsList";
 import { PodcastFiltered } from "../models/PodcastFiltered";
 import "./PodcastList.css";
 
 function PostcastList() {
-  const { podcasts, error } = usePodcastsList();
+  const { podcasts, error } = usePodcastList();
   const [searchTerm, setSearchTerm] = useState<string>("");
 
   if (error) console.log(error);

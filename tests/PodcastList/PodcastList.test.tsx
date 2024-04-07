@@ -2,7 +2,6 @@ import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import PodcastList from "../../src/features/PodcastList/components/PodcastList";
 import { LoadingProvider } from "../../src/common/contexts/LoadingContext";
-import usePodcastsList from "../../src/features/PodcastList/services/usePodcastsList";
 import { PodcastFiltered } from "../../src/features/PodcastList/models/PodcastFiltered";
 import { BrowserRouter } from "react-router-dom";
 
@@ -25,15 +24,11 @@ const mockPodcasts: PodcastFiltered[] = [
 
 jest.mock("../../src/features/PodcastList/services/usePodcastsList", () => ({
   __esModule: true,
-  default: jest.fn(() => ({ podcasts: [...mockPodcasts], error: null })),
+  usePodcastList: jest.fn(() => ({ podcasts: [...mockPodcasts], error: null })),
 }));
 
 describe("PodcastList Component", () => {
   beforeEach(() => {
-    (usePodcastsList as jest.Mock).mockReturnValue({
-      podcasts: mockPodcasts,
-      error: null,
-    });
     render(
       <BrowserRouter>
         <LoadingProvider>

@@ -1,46 +1,21 @@
-import { useEffect, useState } from "react";
-import { type PodcastFiltered } from "../models/PodcastFiltered";
-import { useLoading } from "../../../common/contexts/LoadingContext";
-import { getPodcastsFilteredWithCache } from "../../../common/api/fetchApiData";
+import { fetchApiData } from "../../../common/api/fetchApiData";
+import { useRequest } from "../../../common/api/useRequest";
+import { LIST_CACHE_KEY } from "../../../common/constants/localStorageConstants";
+import { PodcastListResponse } from "../models/PodcastListResponse";
+import { PODCAST_LIST_URL } from "../../../common/constants/apiURLConstants";
+import { filterPodcastData } from "./filterPodcastData";
 
-function usePodcastList(): {
-  podcasts: PodcastFiltered[] | null;
-  error: string | null;
-} {
-  const [podcasts, setPodcasts] = useState<PodcastFiltered[] | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const { setLoading } = useLoading();
+function fetchPodcastList(abortController: AbortController) {
+  return fetchApiData(PODCAST_LIST_URL, abortController.signal).then((data) => {
+    return data ? filterPodcastData(data) : null;
+  });
+}
 
-  useEffect(() => {
-    const abortCont = new AbortController();
-
-    const fetchPodcasts = async () => {
-      try {
-        setLoading(true);
-        const cachedList = await getPodcastsFilteredWithCache(abortCont.signal);
-        if (cachedList) {
-          setPodcasts(cachedList);
-          return;
-        }
-      } catch (error) {
-        if (abortCont.signal.aborted) {
-          console.log("clean up fetch");
-        } else {
-          setError("An error occurred while fetching podcastList");
-        }
-      } finally {
-        if (!abortCont.signal.aborted) {
-          setLoading(false);
-        }
-      }
-    };
-
-    fetchPodcasts();
-
-    return () => abortCont.abort();
-  }, [setLoading]);
+export function usePodcastList() {
+  const { data: podcasts, error } = useRequest({
+    fetchFn: fetchPodcastList,
+    cachekey: LIST_CACHE_KEY,
+  });
 
   return { podcasts, error };
 }
-
-export default usePodcastList;

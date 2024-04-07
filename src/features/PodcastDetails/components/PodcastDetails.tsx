@@ -6,12 +6,12 @@ import {
   millisecondsToHoursMinutes,
 } from "../../../common/utils/FormattingHelpers";
 import "./PodcastDetails.css";
-import usePodcastDetails from "../services/usePodcastDetails";
+import { usePodcastDetails } from "../services/usePodcastDetails";
 import { PODCAST_ROUTE } from "../../../common/constants/routesConstants";
 
 function PostcastDetails() {
   const { podcastId } = useParams();
-  const { results, error } = usePodcastDetails(podcastId);
+  const { results, error } = usePodcastDetails(podcastId || "");
 
   if (error) {
     console.log(error);

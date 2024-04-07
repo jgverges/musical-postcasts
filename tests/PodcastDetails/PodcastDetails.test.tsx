@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import PodcastDetails from "../../src/features/PodcastDetails/components/PodcastDetails";
-import usePodcastDetails from "../../src/features/PodcastDetails/services/usePodcastDetails";
+import { usePodcastDetails } from "../../src/features/PodcastDetails/services/usePodcastDetails";
 import { BrowserRouter } from "react-router-dom";
 import mock from "../__mocks__/Podcast-detail-sm.mock.json";
 import { LoadingProvider } from "../../src/common/contexts/LoadingContext";
@@ -16,7 +16,7 @@ jest.mock(
   "../../src/features/PodcastDetails/services/usePodcastDetails",
   () => ({
     __esModule: true,
-    default: jest.fn(),
+    usePodcastDetails: jest.fn(),
   })
 );
 
@@ -35,12 +35,6 @@ describe("PodcastDetails Component", () => {
     );
   });
 
-  test("renders without crashing", () => {
-    (usePodcastDetails as jest.Mock).mockReturnValue({
-      results: mockEpisodes,
-      error: null,
-    });
-  });
   test("renders list of podcast episodes with 'trackName' and 'trackTimeMillis' properly", () => {
     const trackName = extractTitleFromTrack(mockEpisodes[0].trackName); // Ish Type Beat
     const trackTimeMillis = millisecondsToHoursMinutes(
@@ -51,6 +45,7 @@ describe("PodcastDetails Component", () => {
     const regexTime = new RegExp(trackTimeMillis.replace(/\s+/g, "\\s*"), "i");
 
     expect(screen.getByText(regexTrackName)).toBeDefined();
+    expect(screen.queryByText(/Ishhh Type Beat/i)).toBeNull(); //With misspelled text 'Ishhh' instead 'Ish'
     expect(screen.getByText(regexTime)).toBeDefined();
   });
 });
