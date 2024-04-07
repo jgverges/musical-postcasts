@@ -184,22 +184,13 @@ Renders: "Ish Type Beat"
 
 To prevent overflow with some excessively long titles that broke the card layout, such as `BROKEN RECORD WITH RICK RUBIN, MALCOLM GLADWELL, BRUCE HEADLAM AND JUSTIN RICHMOND`, their maximum length has been truncated.
 
+
+## LIghthouse results on localhost in Mac OS
+
+![image](https://github.com/jgverges/podcast-apuntes/assets/55912813/b16884f4-b5d7-4e4e-b5cf-bb9af4787b2f)
+
+We've worked with Lighthouse to make performance improvements to the application. Accessibility, Best Practices, and SEO are increasingly valued by companies to position their projects. That's why we've built the HTML code following semantic, accessibility, and SEO guidelines. Additionally, improvements to the build process with Webpack have been initiated
+
 ## Version Control
 
 The project uses `git` and `GitHub` under the `conventional commit` protocol. It also includes explanatory `tags`.
-
-## Development Requirements
-
-The application has been designed based on the supplied requirements listed in a PDF file..
-
-Additionally, it has followed the following received recommendations:
-
-- Avoid using `create-react-app` or similar tools. Set up the project from scratch. Preferably using `webpack`.
-
-- Utilize `hexagonal architecture`, focusing on features and separating models, services, and screens within each feature.
-
-- Implement TypeScript.
-
-- Preferably use native CSS without libraries.
-
-- Include tests.
