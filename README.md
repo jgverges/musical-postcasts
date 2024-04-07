@@ -184,12 +184,13 @@ Renders: "Ish Type Beat"
 
 To prevent overflow with some excessively long titles that broke the card layout, such as `BROKEN RECORD WITH RICK RUBIN, MALCOLM GLADWELL, BRUCE HEADLAM AND JUSTIN RICHMOND`, their maximum length has been truncated.
 
+## Lighthouse
 
-## LIghthouse results on localhost in Mac OS
+Results on localhost in Mac OS for Desktop
 
 ![image](https://github.com/jgverges/podcast-apuntes/assets/55912813/b16884f4-b5d7-4e4e-b5cf-bb9af4787b2f)
 
-We've worked with Lighthouse to make performance improvements to the application. Accessibility, Best Practices, and SEO are increasingly valued by companies to position their projects. That's why we've built the HTML code following semantic, accessibility, and SEO guidelines. Additionally, improvements to the build process with Webpack have been initiated
+Used Lighthouse to make performance improvements to the application. Accessibility, Best Practices and SEO are increasingly valued by companies to position their projects. That is why the HTML code was created following semantic, accessibility and SEO guidelines. Additionally, improvements have been made to the build process with Webpack.
 
 ## Version Control
 
