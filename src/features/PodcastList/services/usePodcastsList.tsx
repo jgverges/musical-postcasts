@@ -1,7 +1,6 @@
 import { fetchApiData } from "../../../common/api/fetchApiData";
 import { useRequest } from "../../../common/api/useRequest";
 import { LIST_CACHE_KEY } from "../../../common/constants/localStorageConstants";
-import { PodcastListResponse } from "../models/PodcastListResponse";
 import { PODCAST_LIST_URL } from "../../../common/constants/apiURLConstants";
 import { filterPodcastData } from "./filterPodcastData";
 

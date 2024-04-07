@@ -1,6 +1,7 @@
 .list-container {
   gap: 30px;
 }
+
 .podcasts-list {
   display: flex;
   flex-wrap: wrap;
@@ -11,12 +12,13 @@
 .list-header {
   position: relative;
 }
+
 .div-right {
   position: absolute;
-  right: 190px;
-  top: 0;
   display: flex;
+  left: 650px;
 }
+
 .list-counter {
   font-weight: bolder;
   background-color: blue;
