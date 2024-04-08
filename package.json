@@ -1,7 +1,7 @@
 {
   "name": "musical-podcasts",
   "version": "1.0.0",
-  "description": "musical-postcasts",
+  "description": "musical-podcasts",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development",
